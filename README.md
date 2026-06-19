@@ -139,6 +139,11 @@ What the model missed: the distinction between rhetorical questions (which open 
 
 ---
 
+## Demo Video
+<video controls src="demo.mp4" title="Title"></video>
+
+---
+
 ## Repository Structure
 
 | File | Purpose |
