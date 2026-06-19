@@ -105,3 +105,64 @@ Plan to give your list of wrong predictions to an AI tool and ask it to identify
 ```
 I will use a training set of 10 posts without labels before training the model to see how it labels the posts based on my label descriptions.
 ```
+
+## Milestone 4 - Baseline
+
+```
+🎯 Baseline accuracy: 1.000  (evaluated on 31/31 parseable responses)
+
+Per-class metrics (baseline):
+              precision    recall  f1-score   support
+
+     opinion       1.00      1.00      1.00        10
+  discussion       1.00      1.00      1.00        10
+    question       1.00      1.00      1.00        11
+
+    accuracy                           1.00        31
+   macro avg       1.00      1.00      1.00        31
+weighted avg       1.00      1.00      1.00        31
+
+```
+
+Reflection: The baseline was perfect. No struggles encountered. 
+
+## Milestone 5 - Fine-Tuning
+
+```
+🎯 Fine-tuned model accuracy: 0.903
+
+Per-class metrics (fine-tuned model):
+              precision    recall  f1-score   support
+
+     opinion       1.00      1.00      1.00        10
+  discussion       0.89      0.80      0.84        10
+    question       0.83      0.91      0.87        11
+
+    accuracy                           0.90        31
+   macro avg       0.91      0.90      0.90        31
+weighted avg       0.91      0.90      0.90        31
+```
+
+### Confusion Matrix
+![confusion matrix](confusion_matrix.png)
+
+### Wrong Predictions
+
+```
+Wrong predictions: 3 / 31
+
+--- #1 ---
+Text:      What is the most influential album that most people have never actually listened to?
+True:      question
+Predicted: discussion  (confidence: 0.35)
+
+--- #2 ---
+Text:      Thoughts on Lil Wayne's peak era? Is he underrated in the GOAT conversation because he's hard to fit into a narrative?
+True:      discussion
+Predicted: question  (confidence: 0.34)
+
+--- #3 ---
+Text:      Can we talk about how music documentaries shape legacy? Are they revealing or are they canonizing?
+True:      discussion
+Predicted: question  (confidence: 0.35)
+```
