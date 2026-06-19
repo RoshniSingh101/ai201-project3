@@ -41,6 +41,8 @@ The goal was to classify the intent of a music-community post: is the author sha
 | Baseline | Zero-shot GPT-4o with label definitions in the prompt |
 | Fine-tuned | DistilBERT (`distilbert-base-uncased`) fine-tuned on annotated training set |
 
+I kept 3 epochs to prevent overfitting the data — the training loss was still decreasing at epoch 3 but the gap from validation loss was small. I also decided to move forward with the default settings to perserve GPU usage and maximize performance. 
+
 ---
 
 ## Evaluation Results
