@@ -109,33 +109,6 @@ The title opens with "Thoughts on…" — a classic discussion opener — but th
 
 ---
 
-## AI-Assisted Failure Pattern Analysis
-
-Before writing the analysis above, I pasted all three wrong predictions into Claude and asked: "What common themes do you see in these misclassified posts?" Claude identified:
-- All three contain question marks, which is the dominant surface signal the fine-tuned model relies on.
-- All three have very low confidence (0.34–0.35), indicating the model was near its decision boundary for all of them.
-- The confusion is unidirectional: the model tends to predict `question` when it sees question syntax, even when the surrounding discourse markers signal `discussion`.
-
-I then re-read each example myself to verify. The pattern held — every error involved question-syntax markers in what was actually a discussion post (or vice versa in Error #1). I did not need to override Claude's findings, but I added the specific discourse-marker analysis (e.g., "can we talk about" as a discussion move) myself, since Claude described the pattern but didn't explain the linguistic mechanism.
-
----
-
-## Sample Classifications
-
-The following examples were run through the fine-tuned DistilBERT model:
-
-| Post Text | Predicted Label | Confidence |
-|---|---|---|
-| "Olivia Rodrigo's new album is getting way too much praise and not enough critique" | `opinion` | 0.91 |
-| "Let's talk about Saturday Night Fever — does disco get the credit it deserves?" | `discussion` | 0.87 |
-| "Why do people treat their music opinions as objective facts?" | `question` | 0.82 |
-| "Lyrics are massively overvalued in how people judge music" | `opinion` | 0.88 |
-| "Can we talk about how music documentaries shape legacy? Are they revealing or canonizing?" | `question` *(wrong)* | 0.35 |
-
-**Why the first prediction is reasonable:** The post "Olivia Rodrigo's new album is getting way too much praise and not enough critique" fits `opinion` cleanly — the phrasing "too much praise" signals a personal evaluative stance, and there is no explicit invitation for others to weigh in. The model's 0.91 confidence reflects the unambiguous first-person framing.
-
----
-
 ## Reflection: What the Model Captured vs. What I Intended
 
 My label definitions rely on **intent** — what the author is trying to do socially (assert, invite, ask). The fine-tuned model learned **surface syntax** instead — question marks, question-word openers, and specific phrases like "Thoughts on."
@@ -163,12 +136,6 @@ What the model missed: the distinction between rhetorical questions (which open 
 **Instance 2 — Failure analysis:** After training, I pasted the 3 wrong predictions into Claude and asked it to identify common themes across the misclassified examples. Claude correctly identified that all three involved question syntax and that all had low confidence scores. I used this as a starting point for my own analysis and added the linguistic reasoning about discourse markers and rhetorical questions myself — Claude described the surface pattern but didn't explain why it was happening mechanically.
 
 **Instance 3 — Label stress-testing:** I used Claude during Milestone 1 to generate boundary posts between each label pair (opinion ↔ discussion, opinion ↔ question, question ↔ discussion). Several of these synthetic examples revealed genuine ambiguity in my definitions, which led me to add the "I-statement vs. you-statement" and "question mark + wh-word" rules to my annotation guide before I started labeling real posts.
-
----
-
-## Demo Video
-
-*(Link to be added — video shows 3–5 posts classified by the fine-tuned model with label and confidence visible, including narration of one correct and one incorrect prediction, and a walkthrough of the evaluation report.)*
 
 ---
 
